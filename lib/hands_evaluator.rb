@@ -3,7 +3,7 @@ class HandsEvaluator
   def initialize
   end
 
-  def self.winning_hand(black_hand, white_hand)
+  def self.high_card(black_hand, white_hand)
     if compare(black_hand.highest_card, white_hand.highest_card) > 0
       black_hand
     else

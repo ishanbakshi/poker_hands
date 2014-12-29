@@ -1,0 +1,2 @@
+class HandsParser
+end

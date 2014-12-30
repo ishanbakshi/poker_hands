@@ -23,5 +23,6 @@ class Hand
       end
       counter -=1
     end
+    "no_pair"
   end
 end

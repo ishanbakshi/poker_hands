@@ -24,5 +24,13 @@ describe 'Hand' do
     end
 
   end
+ 
+  describe 'pair' do
+    
+    it 'should return double pair' do
+      hand = Hand.new("Black: 5S 4C 3D KS 5H")
+      expect(hand.pair).to eq("5")
+    end
 
+  end 
 end

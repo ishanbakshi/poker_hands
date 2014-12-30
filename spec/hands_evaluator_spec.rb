@@ -31,5 +31,13 @@ describe 'pairEvaluator' do
     winning_hand = HandsEvaluator.card_with_pair(black_hand,white_hand)
     expect(winning_hand).to eq(white_hand)
   end
+
+  it 'should return no_pair in the absence of no pairs in both hands' do
+    black_hand = Hand.new("Black: 3S 4C 7D KS QH")
+    white_hand = Hand.new("White: 5S 4C 3D 2S QH")
+    winning_hand = HandsEvaluator.card_with_pair(black_hand,white_hand)
+    expect(winning_hand).to eq("no_pair")
+  end
+
 end
 

@@ -12,10 +12,16 @@ class HandsEvaluator
   end
 
   def card_with_pair(black_hand,white_hand)
-    if black_hand.pair != "no_pair"
-        black_hand
+    if black_hand.pair != "no_pair" && white_hand.pair !="no_pair"
+        if black_hand.pair > white_hand.pair
+          black_hand
+        else
+         white_hand
+        end
     elsif white_hand.pair != "no_pair"
-        white_hand
+      white_hand
+    elsif black_hand.pair != "no_pair"
+      black_hand
     else 
       false
     end    

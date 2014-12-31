@@ -8,7 +8,6 @@ class PokerGame
       winning_hand_value = HandsEvaluator.high_card(hands[0], hands[1])
   end
       winning_hand_value.name
-   # end
    end
 
 end

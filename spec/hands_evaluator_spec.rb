@@ -21,22 +21,25 @@ describe 'pairEvaluator' do
   it 'should return black hand based on presence of pair' do
     black_hand = Hand.new("Black: 3S 4C 3D KS QH")
     white_hand = Hand.new("White: 5S 4C 3D KS QH")
-    winning_hand = HandsEvaluator.card_with_pair(black_hand,white_hand)
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_pair(black_hand,white_hand)
     expect(winning_hand).to eq(black_hand)
   end
 
   it 'should return black hand based on presence of pair' do
     black_hand = Hand.new("Black: 3S 4C 7D KS QH")
     white_hand = Hand.new("White: 5S 4C 3D 4S QH")
-    winning_hand = HandsEvaluator.card_with_pair(black_hand,white_hand)
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_pair(black_hand,white_hand)
     expect(winning_hand).to eq(white_hand)
   end
 
   it 'should return no_pair in the absence of no pairs in both hands' do
     black_hand = Hand.new("Black: 3S 4C 7D KS QH")
     white_hand = Hand.new("White: 5S 4C 3D 2S QH")
-    winning_hand = HandsEvaluator.card_with_pair(black_hand,white_hand)
-    expect(winning_hand).to eq("no_pair")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_pair(black_hand,white_hand)
+    expect(winning_hand).to eq(false)
   end
 
 end

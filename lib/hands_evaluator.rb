@@ -37,15 +37,4 @@ class HandsEvaluator
       return -1
     end
   end
-
-
-  def self.card_with_pair(black_hand,white_hand)
-    if black_hand.pair != "no_pair"
-        black_hand
-    elsif white_hand.pair != "no_pair"
-        white_hand
-    else 
-      "no_pair"
-    end    
-  end
 end

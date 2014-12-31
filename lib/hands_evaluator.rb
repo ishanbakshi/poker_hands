@@ -11,6 +11,17 @@ class HandsEvaluator
     end
   end
 
+  def card_with_pair(black_hand,white_hand)
+    if black_hand.pair != "no_pair"
+        black_hand
+    elsif white_hand.pair != "no_pair"
+        white_hand
+    else 
+      false
+    end    
+  end
+  
+  
   private
 
   def self.compare(cardA, cardB)
@@ -20,6 +31,8 @@ class HandsEvaluator
       return -1
     end
   end
+
+
   def self.card_with_pair(black_hand,white_hand)
     if black_hand.pair != "no_pair"
         black_hand

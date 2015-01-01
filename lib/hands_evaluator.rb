@@ -16,7 +16,7 @@ class HandsEvaluator
         if black_hand.pair > white_hand.pair
           black_hand
         elsif black_hand.pair == white_hand.pair
-          return  second_pair_check(black_hand,white_hand)
+          second_pair_check(black_hand,white_hand)
         else
          white_hand
         end
@@ -29,9 +29,23 @@ class HandsEvaluator
     end    
   end
   
-  private
-  def self.second_pair_check(black_hand,white_hand)
-
+  protected
+  def second_pair_check(black_hand,white_hand)
+    if black_hand.second_pair != "no_pair" && white_hand.second_pair != "no_pair"
+      if black_hand.second_pair > white_hand.second_pair
+          return black_hand
+      elsif black_hand.second_pair < white_hand.second_pair
+          return white_hand
+      else
+           return "no_pair"
+      end   
+    elsif black_hand.second_pair != "no_pair"
+      return black_hand
+    elsif white_hand.second_pair != "no_pair"
+      return white_hand
+    else
+      "no_pair"
+    end
   end
   
   private

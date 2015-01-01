@@ -33,8 +33,8 @@ describe 'Hand' do
     end
     
     it 'should return second double pair' do
-            hand = Hand.new("White: 4S 2S 4D 8S 8D")
-            expect(hand.second_pair).to eq("4")
+      hand = Hand.new("White: 4S 2S 4D 8S 8D")
+      expect(hand.second_pair).to eq("4")
     end
   end 
 end

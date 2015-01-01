@@ -41,6 +41,27 @@ describe 'pairEvaluator' do
     winning_hand = hands_evaluator_obj.card_with_pair(black_hand,white_hand)
     expect(winning_hand).to eq(false)
   end
+  it 'should return white hand based on presence of larger pair' do
+    black_hand = Hand.new("Black: 3S 4C 7D 4S QH")
+    white_hand = Hand.new("White: 5S 4C 3D QS QH")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_pair(black_hand,white_hand)
+    expect(winning_hand).to eq(white_hand)
+  end
+  it 'should return white hand based on presence of second pair' do
+    black_hand = Hand.new("Black: 3S 4C 7D QS QH")
+    white_hand = Hand.new("White: 5S 4C 5D QS QH")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_pair(black_hand,white_hand)
+    expect(winning_hand).to eq(white_hand)
+  end
+  it 'should return black hand based on presence of larger second pair' do
+    black_hand = Hand.new("Black: JS 4C QD JS QH")
+    white_hand = Hand.new("White: 5S 4C 5D QS QH")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_pair(black_hand,white_hand)
+    expect(winning_hand).to eq(black_hand)
+  end
 
 end
 

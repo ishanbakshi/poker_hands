@@ -29,6 +29,14 @@ describe 'Poker Hands' do
  expect(poker_game.winning_hand("Black: 2H 3D 5S 6H 2D  White: 4H 2S 7H KH 2S")).to eq('Black')
   end
 
+  it 'should return winning hand with a double pair' do
+    poker_game = PokerGame.new
+    black_hand = instance_double('Hand',  name: 'Black', pair: '2', second_pair:'4')
+    white_hand = instance_double('Hand',  name: 'White', pair: '2', second_pair:'no_pair')
+    allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
+    allow(HandsEvaluator).to receive(:card_with_pair).with(black_hand, white_hand).and_return(black_hand)
+ expect(poker_game.winning_hand("Black: 2H 2D 5S 4H 4D  White: 4H 2S 7H KH 2S")).to eq('Black')
+  end
 
   it 'should return winning hand with higher pair' do
     poker_game = PokerGame.new

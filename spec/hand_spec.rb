@@ -31,6 +31,10 @@ describe 'Hand' do
       hand = Hand.new("Black: 5S 4C 3D KS 5H")
       expect(hand.pair).to eq("5")
     end
-
+    
+    it 'should return second double pair' do
+            hand = Hand.new("White: 4S 2S 4D 8S 8D")
+            expect(hand.second_pair).to eq("4")
+    end
   end 
 end

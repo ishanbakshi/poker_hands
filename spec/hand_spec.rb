@@ -37,11 +37,24 @@ describe 'Hand' do
       expect(hand.second_pair).to eq("4")
     end
   end 
+  
   describe 'three of a kind'  do
     it 'should return three of a kind' do
       hand = Hand.new("White: 3S 6D 6S 6C 7D")
       expect(hand.three_of_a_kind).to eq("6")
     end
   end
+  
+  describe 'straight hands' do
+    it 'should return the start of a 5 card consecutive series in a hand' do
+      hand = Hand.new("White: 6S 7D 8S 9C JD")
+      expect(hand.card_series).to eq("J")
+    end
+    it 'should return false if a 5 card series is not there' do
+      hand = Hand.new("White: 3S 6D 6S 6C 7D")
+      expect(hand.card_series).to eq(false)
+    end
+  end
+
 
 end

@@ -58,5 +58,26 @@ class HandsEvaluator
     end
   end
 
+  public
+
+  def card_with_triplet(black_hand, white_hand)
+    if black_hand.three_of_a_kind != false && white_hand.three_of_a_kind !=false
+      if black_hand.three_of_a_kind == white_hand.three_of_a_kind
+        false
+      elsif black_hand.three_of_a_kind > white_hand.three_of_a_kind
+        black_hand 
+      else
+        white_hand
+      end
+    elsif black_hand.three_of_a_kind !=false
+      black_hand
+    elsif white_hand.three_of_a_kind != false
+      white_hand
+    else
+      false
+    end
+  end
+
+
 
 end

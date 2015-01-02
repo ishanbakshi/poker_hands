@@ -64,4 +64,12 @@ describe 'pairEvaluator' do
   end
 
 end
-
+describe 'three of a kind evaluator' do
+  it 'should return black hand based on presence of 3 of a kind' do
+    black_hand = Hand.new("Black: JS 4C JD JS QH")
+    white_hand = Hand.new("White: 5S 4C 5D QS QH")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_triplet(black_hand,white_hand)
+    expect(winning_hand).to eq(black_hand)
+  end
+end

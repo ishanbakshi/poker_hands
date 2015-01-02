@@ -58,12 +58,9 @@ class Hand
     hand_parts.sort_by{|card_symbol| Card.value(card_symbol)}
     counter = 4
     series_starter = hand_parts.last
-    puts "we enter the logs here........"
     while counter > 0
       register = Card.value(hand_parts.pop) - 1
-      puts register
       if register != Card.value(hand_parts.last)
-        puts "set return value to false XXXXXXX :(" 
          return false
       end
       counter -=1

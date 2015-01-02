@@ -73,3 +73,19 @@ describe 'three of a kind evaluator' do
     expect(winning_hand).to eq(black_hand)
   end
 end
+describe 'straight series of 5 consecutive cards' do
+  it 'should return white hand based on 5 consecutive cards' do
+    black_hand = Hand.new("Black: 7S 8C 9D JS QH")
+    white_hand = Hand.new("White: 5S 4C 5D QS QH")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_straight(black_hand,white_hand)
+    expect(winning_hand).to eq(black_hand)
+  end
+  it 'should return white hand based on hand with larger 5 consecutive cards' do
+    black_hand = Hand.new("Black: 7S 8C 9D JS QH")
+    white_hand = Hand.new("White: 4S 5C 6D 7S 8H")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_straight(black_hand,white_hand)
+    expect(winning_hand).to eq(black_hand)
+  end
+end

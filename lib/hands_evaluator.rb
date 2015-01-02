@@ -78,6 +78,22 @@ class HandsEvaluator
     end
   end
 
-
+  def card_with_straight(black_hand, white_hand)
+    if black_hand.card_series != false && white_hand.card_series
+     if black_hand.card_series == white_hand.card_series
+       false
+     elsif black_hand.card_series > white_hand.card_series
+       black_hand    
+     else
+       white_hand
+     end
+    elsif black_hand.card_series != false
+      black_hand
+    elsif white_hand.card_series != false
+      white_hand
+    else
+      false
+    end       
+  end
 
 end

@@ -24,7 +24,7 @@ class Hand
       counter -=1
     end
     "no_pair"
-end
+  end
 
   def second_pair
     hand_parts = @hand_string.split(" ")[1,5].map{|element| element[0]} 
@@ -39,5 +39,19 @@ end
     end
     "no_pair"
   end
+
+  def three_of_a_kind
+    hand_parts = @hand_string.split(" ")[1,5].map{|element| element[0]} 
+    hand_parts.sort_by{|card_symbol| Card.value(card_symbol)}
+    counter = 4
+    while counter > 1
+     if hand_parts[0..(counter-1)].select{ |a| a == hand_parts[counter] }.count >= 2
+       return hand_parts[counter] 
+     end
+     counter -=1
+    end
+    false
+  end
+
 end
 

@@ -37,4 +37,11 @@ describe 'Hand' do
       expect(hand.second_pair).to eq("4")
     end
   end 
+  describe 'three of a kind'  do
+    it 'should return three of a kind' do
+      hand = Hand.new("White: 3S 6D 6S 6C 7D")
+      expect(hand.three_of_a_kind).to eq("6")
+    end
+  end
+
 end

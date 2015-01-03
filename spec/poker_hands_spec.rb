@@ -65,5 +65,16 @@ describe 'Poker Hands' do
  expect(poker_game.winning_hand("Black: 2H 5D 5S 6H 5D  White: 4H JS 7H JH 2S")).to eq('Black')
   end
 
+  it 'should return hand with flush' do
+    poker_game = PokerGame.new
+    black_hand = Hand.new("Black: 3D 2D 5D QD 8D")
+    white_hand = Hand.new("White: 2S 5D AS AD AH")
+    allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
+    allow(HandsEvaluator).to receive(:card_with_flush).with(black_hand, white_hand).and_return(black_hand)
+ expect(poker_game.winning_hand("Black: 3D 2D 5D QD 8D  White: 2S 5D AS AD AH")).to eq('Black')
+    
+  end
+
+
 
 end

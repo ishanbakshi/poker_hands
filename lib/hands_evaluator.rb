@@ -96,4 +96,23 @@ class HandsEvaluator
     end       
   end
 
+  def card_with_flush(black_hand, white_hand)
+    if black_hand.flush != false && white_hand.flush != false
+     if black_hand.flush == white_hand.flush
+       false
+     elsif black_hand.flush > white_hand.flush
+       black_hand    
+     else
+       white_hand
+     end
+    elsif black_hand.flush != false
+      black_hand
+    elsif white_hand.flush != false
+      white_hand
+    else
+      false
+    end       
+
+  end
+
 end

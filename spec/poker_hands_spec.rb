@@ -13,8 +13,8 @@ describe 'Poker Hands' do
   end
   it 'should return winning hand with highest card' do
     poker_game = PokerGame.new
-    black_hand = instance_double('Hand',  name: 'Black',pair: 'no_pair', three_of_a_kind: false)
-    white_hand = instance_double('Hand',  name: 'White',pair: 'no_pair',three_of_a_kind: false)
+    black_hand = Hand.new("Black: 2H 3D 5S 9C KD")
+    white_hand = Hand.new("White: 2C 3H 4S 8C AH")
     allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
    allow(HandsEvaluator).to receive(:high_card).with(black_hand, white_hand).and_return(white_hand)
     expect(poker_game.winning_hand("Black: 2H 3D 5S 9C KD  White: 2C 3H 4S 8C AH")).to eq('White')
@@ -22,17 +22,17 @@ describe 'Poker Hands' do
 
   it 'should return winning hand with a pair' do
     poker_game = PokerGame.new
-    black_hand = instance_double('Hand',  name: 'Black', pair: '2',three_of_a_kind: false)
-    white_hand = instance_double('Hand',  name: 'White', pair: 'no_pair',three_of_a_kind: false)
+    black_hand = Hand.new("Black: 2H 3D 5S 6C 2D")
+    white_hand = Hand.new("Black: 4H JS 7H KH 2S")
     allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
     allow(HandsEvaluator).to receive(:card_with_pair).with(black_hand, white_hand).and_return(black_hand)
- expect(poker_game.winning_hand("Black: 2H 3D 5S 6H 2D  White: 4H 2S 7H KH 2S")).to eq('Black')
+ expect(poker_game.winning_hand("Black: 2H 3D 5S 6H 2D  White: 4H JS 7H KH 2S")).to eq('Black')
   end
 
   it 'should return winning hand with a double pair' do
     poker_game = PokerGame.new
-    black_hand = instance_double('Hand',  name: 'Black', pair: '2', second_pair:'4',three_of_a_kind: false)
-    white_hand = instance_double('Hand',  name: 'White', pair: '2', second_pair:'no_pair',three_of_a_kind: false)
+    black_hand = Hand.new("Black: 2H 2D 5S 4H 4D")
+    white_hand = Hand.new("White: 4H 2S 7H KH 2S")
     allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
     allow(HandsEvaluator).to receive(:card_with_pair).with(black_hand, white_hand).and_return(black_hand)
  expect(poker_game.winning_hand("Black: 2H 2D 5S 4H 4D  White: 4H 2S 7H KH 2S")).to eq('Black')
@@ -40,8 +40,8 @@ describe 'Poker Hands' do
 
   it 'should return winning hand with higher pair' do
     poker_game = PokerGame.new
-    black_hand = instance_double('Hand',  name: 'Black', pair: '2',three_of_a_kind: false)
-    white_hand = instance_double('Hand',  name: 'White', pair: 'J',three_of_a_kind: false)
+    black_hand = Hand.new("Black: 2H 3D 5S 6H 2D")
+    white_hand = Hand.new("White: 4H JS 7H JH 2S")
     allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
     allow(HandsEvaluator).to receive(:card_with_pair).with(black_hand, white_hand).and_return(black_hand)
  expect(poker_game.winning_hand("Black: 2H 3D 5S 6H 2D  White: 4H JS 7H JH 2S")).to eq('White')
@@ -49,11 +49,21 @@ describe 'Poker Hands' do
 
   it ' should return winning hand with three of a kind' do
     poker_game = PokerGame.new
-    black_hand = instance_double('Hand',  name: 'Black', pair: '2', three_of_a_kind: '5')
-    white_hand = instance_double('Hand',  name: 'White', pair: '2', three_of_a_kind:false )
+    black_hand = Hand.new("Black: 2H 5D 5S 6H 5D")
+    white_hand = Hand.new("White: 4H JS 7H JH 2S")
     allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
     allow(HandsEvaluator).to receive(:card_with_pair).with(black_hand, white_hand).and_return(black_hand)
  expect(poker_game.winning_hand("Black: 2H 5D 5S 6H 5D  White: 4H JS 7H JH 2S")).to eq('Black')
   end
+
+  it ' should return winning hand with 5 consecutive cards' do
+    poker_game = PokerGame.new
+    black_hand = Hand.new("Black: 2S 3S 4D 5D 6C") 
+    white_hand  = Hand.new("Black: 2S 3S 2D 5D 6C")
+    allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
+    allow(HandsEvaluator).to receive(:card_with_straight).with(black_hand, white_hand).and_return(black_hand)
+ expect(poker_game.winning_hand("Black: 2H 5D 5S 6H 5D  White: 4H JS 7H JH 2S")).to eq('Black')
+  end
+
 
 end

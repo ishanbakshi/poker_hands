@@ -56,5 +56,17 @@ describe 'Hand' do
     end
   end
 
+  describe 'flush' do
+    it 'should return haighest card of a hand which satisfies flush rule' do
+      hand = Hand.new("Black: 3S 4S JS 2S AS")
+      expect(hand.flush).to eq("S")
+    end
+    it 'should return false if flush rule is not satisfied for a hand' do
+      hand = Hand.new("Black: 3S 4D JS 2S AS")
+      expect(hand.flush).to eq(false)
+    end
+  end
+
+
 
 end

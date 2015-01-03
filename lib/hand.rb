@@ -68,5 +68,15 @@ class Hand
     return series_starter
   end
 
+  def flush
+    hand_parts = @hand_string.split(" ")[1,5].map{|element| element[1]} 
+    single_card_part = hand_parts.last
+    if hand_parts.select{|ele| ele == single_card_part}.length == 5
+      hand_parts.last
+    else
+      false
+    end
+  end
+
 end
 

@@ -84,5 +84,13 @@ describe 'Poker Hands' do
   end
    
 
+  it 'should return hand with four of a kind' do
+    poker_game = PokerGame.new
+    black_hand = Hand.new("Black: 3D 2C 2H 2D 2S")
+    white_hand = Hand.new("White: AS QD QS QD AH")
+    allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
+    allow(HandsEvaluator).to receive(:card_with_full_house).with(black_hand, white_hand).and_return(black_hand)
+ expect(poker_game.winning_hand("Black: 3D 2C 2H 2D 2S  White: AS QD QS QD AH")).to eq('Black')  
+  end
 
 end

@@ -143,3 +143,27 @@ describe 'four of a kind' do
   end
 end
 
+describe 'straight flush' do
+  it 'should return white hand based on straight flush' do
+    black_hand = Hand.new("Black: 2D 3D 4D 5D 6D")
+    white_hand = Hand.new("White: 4S 4S 6S 4S 4S")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_straight_flush(black_hand,white_hand)
+    expect(winning_hand).to eq(black_hand)
+  end
+  it 'should return white hand based on straight flush with higher series' do
+    black_hand = Hand.new("Black: 2D 3D 4D 5D 6D")
+    white_hand = Hand.new("White: 7S 8S 9S JS QS")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_straight_flush(black_hand,white_hand)
+    expect(winning_hand).to eq(white_hand)
+  end
+  it 'should return false based on absence straight flush' do
+    black_hand = Hand.new("Black: 2D 3D 4H 5D 6D")
+    white_hand = Hand.new("White: 7S 8S 2S JS QS")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_straight_flush(black_hand,white_hand)
+    expect(winning_hand).to eq(false)
+  end
+end
+

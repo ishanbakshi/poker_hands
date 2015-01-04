@@ -136,7 +136,7 @@ class HandsEvaluator
     if black_hand.four_of_a_kind != false && white_hand.four_of_a_kind != false
      if black_hand.four_of_a_kind == white_hand.four_of_a_kind
        false
-     elsif black_hand.full_house > white_hand.full_house
+     elsif black_hand.four_of_a_kind > white_hand.four_of_a_kind
        black_hand    
      else
        white_hand
@@ -148,7 +148,24 @@ class HandsEvaluator
     else
       false
     end       
+  end
 
+  def card_with_straight_flush(black_hand,white_hand)
+    if black_hand.straight_flush != false && white_hand.straight_flush != false
+     if black_hand.straight_flush == white_hand.straight_flush
+       false
+     elsif black_hand.straight_flush > white_hand.straight_flush
+       black_hand    
+     else
+       white_hand
+     end
+    elsif black_hand.straight_flush != false
+      black_hand
+    elsif white_hand.straight_flush != false
+      white_hand
+    else
+      false
+    end       
   end
 
 end

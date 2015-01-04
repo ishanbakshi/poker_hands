@@ -18,7 +18,8 @@ class Hand
     hand_parts.sort_by{|card_symbol| Card.value(card_symbol)}
     counter = 4
     while counter > 0
-      if hand_parts[0..(counter-1)].include? hand_parts[counter]
+      #if hand_parts[0..(counter-1)].include? hand_parts[counter]
+      if hand_parts[0..(counter-1)].select{ |a| a == hand_parts[counter] }.count == 1
         return hand_parts[counter]
       end
       counter -=1
@@ -45,7 +46,7 @@ class Hand
     hand_parts.sort_by{|card_symbol| Card.value(card_symbol)}
     counter = 4
     while counter > 1
-     if hand_parts[0..(counter-1)].select{ |a| a == hand_parts[counter] }.count >= 2
+     if hand_parts[0..(counter-1)].select{ |a| a == hand_parts[counter] }.count == 2
        return hand_parts[counter] 
      end
      counter -=1
@@ -76,6 +77,14 @@ class Hand
     else
       false
     end
+  end
+
+  def full_house
+    if self.three_of_a_kind && self.pair
+      self.three_of_a_kind
+    else
+      false
+    end 
   end
 
 end

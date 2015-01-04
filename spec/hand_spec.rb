@@ -67,6 +67,18 @@ describe 'Hand' do
     end
   end
 
+  describe 'full house' do
+    it 'should return highest card of triplet in full house' do
+      hand = Hand.new("Black: 2S JD 2D JS JH")
+      expect(hand.full_house).to eq("J")
+    end
+    it 'should return false if full house does not exist' do
+      hand = Hand.new("Black: 2S JD 2D KS JH")
+      expect(hand.full_house).to eq(false)
+    end
+
+  end
+
 
 
 end

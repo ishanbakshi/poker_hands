@@ -87,9 +87,18 @@ describe 'Hand' do
       hand = Hand.new("Black: 2S 3S 2D JH 2C")
       expect(hand.four_of_a_kind).to eq(false)
     end
-
   end
 
+  describe 'straight flush' do
+    it 'should return highest card of a straight flush' do
+      hand = Hand.new("Black: 2H 3H 4H 5H 6H ")
+      expect(hand.straight_flush).to eq("6")
+    end
+    it 'should false if a straight flush does not exist' do
+      hand = Hand.new("Black: 2H 3H 4D 5H 6H ")
+      expect(hand.straight_flush).to eq(false)
+    end
+  end
 
 
 end

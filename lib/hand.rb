@@ -106,5 +106,12 @@ class Hand
     false
   end
 
+  def straight_flush
+    if self.flush && self.card_series
+      self.card_series  
+    else
+      false
+    end
+  end
 end
 

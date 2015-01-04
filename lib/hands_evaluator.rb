@@ -112,7 +112,24 @@ class HandsEvaluator
     else
       false
     end       
+  end
 
+  def card_with_full_house(black_hand, white_hand)
+    if black_hand.full_house != false && white_hand.full_house != false
+     if black_hand.full_house == white_hand.full_house
+       false
+     elsif black_hand.full_house > white_hand.full_house
+       black_hand    
+     else
+       white_hand
+     end
+    elsif black_hand.full_house != false
+      black_hand
+    elsif white_hand.full_house != false
+      white_hand
+    else
+      false
+    end       
   end
 
 end

@@ -108,3 +108,22 @@ describe 'flush' do
     expect(winning_hand).to eq(white_hand)
   end
 end
+
+describe 'full house' do
+  it 'should return black hand based on full house' do
+    black_hand = Hand.new("Black: 7D 9D 7D 9D 9D")
+    white_hand = Hand.new("White: 4S 5S 6S 7S AS")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_full_house(black_hand,white_hand)
+    expect(winning_hand).to eq(black_hand)
+  end
+  it 'should return white hand based on full house with higher triplet' do
+    black_hand = Hand.new("Black: 7D 9D 7D 9D 9D")
+    white_hand = Hand.new("White: 4S KS KS 4S KS")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_full_house(black_hand,white_hand)
+    expect(winning_hand).to eq(white_hand)
+  end
+
+end
+

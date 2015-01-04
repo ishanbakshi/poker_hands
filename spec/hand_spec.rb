@@ -73,7 +73,7 @@ describe 'Hand' do
       expect(hand.full_house).to eq("J")
     end
     it 'should return false if full house does not exist' do
-      hand = Hand.new("Black: 2S JD 2D KS JH")
+      hand = Hand.new("White: 2S 5D AS AD AH")
       expect(hand.full_house).to eq(false)
     end
 

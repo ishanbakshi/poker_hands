@@ -80,8 +80,14 @@ class Hand
   end
 
   def full_house
-    if self.three_of_a_kind && self.pair
-      self.three_of_a_kind
+    if self.three_of_a_kind
+      hand_parts = @hand_string.split(" ")[1,5].map{|element| element[0]} 
+      hand_parts = hand_parts.select { |ele| ele != self.three_of_a_kind }
+      if hand_parts.last == hand_parts.first
+        self.three_of_a_kind
+      else
+        false
+      end
     else
       false
     end 

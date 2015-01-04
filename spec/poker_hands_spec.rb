@@ -71,10 +71,18 @@ describe 'Poker Hands' do
     white_hand = Hand.new("White: 2S 5D AS AD AH")
     allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
     allow(HandsEvaluator).to receive(:card_with_flush).with(black_hand, white_hand).and_return(black_hand)
- expect(poker_game.winning_hand("Black: 3D 2D 5D QD 8D  White: 2S 5D AS AD AH")).to eq('Black')
-    
+ expect(poker_game.winning_hand("Black: 3D 2D 5D QD 8D  White: 2S 5D AS AD AH")).to eq('Black') 
   end
 
+  it 'should return hand with full house' do
+    poker_game = PokerGame.new
+    black_hand = Hand.new("Black: 3D QD 3D QD QD")
+    white_hand = Hand.new("White: 2S 5D AS AD AH")
+    allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
+    allow(HandsEvaluator).to receive(:card_with_full_house).with(black_hand, white_hand).and_return(black_hand)
+ expect(poker_game.winning_hand("Black: 3D QD 3D QD QD  White: 2S 5D AS AD AH")).to eq('Black')  
+  end
+   
 
 
 end

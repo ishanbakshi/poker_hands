@@ -76,6 +76,17 @@ describe 'Hand' do
       hand = Hand.new("White: 2S 5D AS AD AH")
       expect(hand.full_house).to eq(false)
     end
+  end
+
+  describe 'four of a kind' do
+    it 'should return four of a kind' do
+      hand = Hand.new("Black: 2S 3S 2D 2H 2C")
+      expect(hand.four_of_a_kind).to eq("2")
+    end
+    it 'should return false if four of a kind does not exist' do
+      hand = Hand.new("Black: 2S 3S 2D JH 2C")
+      expect(hand.four_of_a_kind).to eq(false)
+    end
 
   end
 

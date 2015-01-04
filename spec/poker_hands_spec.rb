@@ -93,4 +93,14 @@ describe 'Poker Hands' do
  expect(poker_game.winning_hand("Black: 3D 2C 2H 2D 2S  White: AS QD QS QD AH")).to eq('Black')  
   end
 
+
+  it 'should return hand with a  straight flush' do
+    poker_game = PokerGame.new
+    black_hand = Hand.new("Black: 4D 5D 6D 7D 8D")
+    white_hand = Hand.new("White: AS QD QS QD QH")
+    allow(HandsParser).to receive(:parse).and_return([black_hand, white_hand])
+    allow(HandsEvaluator).to receive(:card_with_full_house).with(black_hand, white_hand).and_return(black_hand)
+ expect(poker_game.winning_hand("Black: 4D 5D 6D 7D 8D  White: AS QD QS QD QH")).to eq('Black')  
+  end
+
 end

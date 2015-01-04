@@ -124,6 +124,22 @@ describe 'full house' do
     winning_hand = hands_evaluator_obj.card_with_full_house(black_hand,white_hand)
     expect(winning_hand).to eq(white_hand)
   end
+end
 
+describe 'four of a kind' do
+  it 'should return white hand based on four of a kind' do
+    black_hand = Hand.new("Black: 7D 9D 7D 9D 9D")
+    white_hand = Hand.new("White: 4S 4S 6S 4S 4S")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_four_of_a_kind(black_hand,white_hand)
+    expect(winning_hand).to eq(white_hand)
+  end
+  it 'should return white hand based on four of a kind with higher card' do
+    black_hand = Hand.new("Black: 2D 2D 2D 2D 9D")
+    white_hand = Hand.new("White: 4S 4S 6S 4S 4S")
+    hands_evaluator_obj = HandsEvaluator.new
+    winning_hand = hands_evaluator_obj.card_with_four_of_a_kind(black_hand,white_hand)
+    expect(winning_hand).to eq(white_hand)
+  end
 end
 
